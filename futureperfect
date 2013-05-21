@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+require 'sqlite3'
+require './bootstrap_ar'
+require 'csv'
+
+# ARGV = [add, foo]
+command = ARGV[0]
+
+# if command == "-i"
+#   write_user_info_to_db
+
+if command == "add"
+  project_name = ARGV[1]
+  User.create(firstname: project_name)
+elsif command == "list"
+  projects = User.all
+  projects.each_with_index do |user, i|
+    puts "#{i+1}. #{user.firstname}"
+  end
+elsif command == "delete_all_records"
+  matching_projects = User.all
+  matching_projects.each do |user|
+    User.destroy_all
+  end
+elsif command == "-i"
+  write_user_info_to_db(command)
+
+
+# elsif command == "remove"
+#   project_name = ARGV[1]
+#   matching_projects = User.where(firstname: project_name).all
+#   puts "matching_projects = #{matching_projects}."
+#   matching_projects.each do |user|
+#     # projects.destroy
+#     matching_projects.destroy
+#     # User.destroy_all
+#   end
+end
