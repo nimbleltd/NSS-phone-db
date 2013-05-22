@@ -1,1 +1,1 @@
-rvm use --create ruby-2.0.0@futureperfect
+rvm use --create ruby-2.0.0@phone_db

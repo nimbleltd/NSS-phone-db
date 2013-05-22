@@ -25,9 +25,11 @@ elsif command == "-i"
   User.destroy_all
   filename = ARGV[1]
   write_user_info_to_db(filename)
+
 elsif command == "-fn"
   firstname = ARGV[1]
   all_users = User.all
+  find_user_boolean = 0
   all_users.each do |user|
   # puts "user = #{user.firstname}"
     if user.firstname.downcase.include?(firstname.downcase)
@@ -35,12 +37,17 @@ elsif command == "-fn"
       clean_phone = user.phone.gsub(".","-")
       result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
       puts "\nPhone Results#{result}"
+      find_user_boolean += 1
     end
+  end
+  if find_user_boolean == 0
+    puts "\nUnable to find the search string \"#{firstname}\" in the database.\nPlease check your spelling and try again.\n\n"
   end
 
 elsif command == "-ln"
   lastname = ARGV[1]
   all_users = User.all
+  find_user_boolean = 0
   all_users.each do |user|
   # puts "user = #{user.firstname}"
     if user.lastname.downcase.include?(lastname.downcase)
@@ -48,12 +55,17 @@ elsif command == "-ln"
       clean_phone = user.phone.gsub(".","-")
       result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
       puts "\nPhone Results#{result}"
+      find_user_boolean += 1
     end
+  end
+  if find_user_boolean == 0
+    puts "\nUnable to find the search string \"#{lastname}\" in the database.\nPlease check your spelling and try again.\n\n"
   end
 
 elsif command == "-town"
   part_of_town = ARGV[1]
   all_users = User.all
+  find_user_boolean = 0
   all_users.each do |user|
   # puts "user = #{user.firstname}"
     if user.part_of_town.downcase.include?(part_of_town.downcase)
@@ -61,7 +73,11 @@ elsif command == "-town"
       clean_phone = user.phone.gsub(".","-")
       result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
       puts "\nPhone Results#{result}"
+      find_user_boolean += 1
     end
+  end
+  if find_user_boolean == 0
+    puts "\nUnable to find the search string \"#{part_of_town}\" in the database.\nPlease check your spelling and try again.\n\n"
   end
 
 
