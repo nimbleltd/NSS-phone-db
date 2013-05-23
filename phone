@@ -3,25 +3,30 @@ require 'sqlite3'
 require './bootstrap_ar'
 require 'csv'
 require './modules/import_data_into_db.rb'
+require './modules/display_help_menu.rb'
 
 # ARGV = [add, foo]
 command = ARGV[0]
 
-if command == "add"
-  project_name = ARGV[1]
-  User.create(firstname: project_name)
-elsif command == "list"
+if command == "-list"
   all_users = User.all
   all_users.each_with_index do |user, i|
-    puts "#{i+1}. #{user.firstname}"
+    clean_phone = user.phone.gsub(".","-")
+    result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
+        puts "\nPhone Results#{result}"
   end
-elsif command == "delete_all_records"
+
+elsif command == "-h" || command == "-help"
+  display_help_menu
+
+elsif command == "-delete_all_records"
   matching_projects = User.all
   matching_projects.each do |user|
     User.destroy_all
-    puts "All Data Entries Deleted"
   end
-elsif command == "-i"
+puts "\nAll Data Entries Deleted\n\n"
+
+elsif command == "-i" || command == "-in"
   User.destroy_all
   filename = ARGV[1]
   write_user_info_to_db(filename)
@@ -32,26 +37,39 @@ elsif command == "-fn"
   find_user_boolean = 0
   all_users.each do |user|
   # puts "user = #{user.firstname}"
-    if user.firstname.downcase.include?(firstname.downcase)
-      # puts "firstname = #{user.firstname}"
-      clean_phone = user.phone.gsub(".","-")
-      result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
-      puts "\nPhone Results#{result}"
-      find_user_boolean += 1
+    if firstname.length > 1
+      if user.firstname.downcase.include?(firstname.downcase)
+        # puts "firstname = #{user.firstname}"
+        clean_phone = user.phone.gsub(".","-")
+        result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
+        puts "\nPhone Results#{result}"
+        find_user_boolean += 1
+      end
+    elsif user.firstname.downcase.chars.first.include?(firstname.chars.first.downcase)
+        clean_phone = user.phone.gsub(".","-")
+        result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
+        puts "\nPhone Results#{result}"
+        find_user_boolean += 1
     end
   end
   if find_user_boolean == 0
     puts "\nUnable to find the search string \"#{firstname}\" in the database.\nPlease check your spelling and try again.\n\n"
   end
+  puts "results total: #{find_user_boolean}\n\n"
 
 elsif command == "-ln"
   lastname = ARGV[1]
   all_users = User.all
   find_user_boolean = 0
   all_users.each do |user|
-  # puts "user = #{user.firstname}"
-    if user.lastname.downcase.include?(lastname.downcase)
-      # puts "firstname = #{user.firstname}"
+    if lastname.length > 1
+      if user.lastname.downcase.include?(lastname.downcase)
+        clean_phone = user.phone.gsub(".","-")
+        result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
+        puts "\nPhone Results#{result}"
+        find_user_boolean += 1
+      end
+    elsif user.lastname.downcase.chars.first.include?(lastname.chars.first.downcase)
       clean_phone = user.phone.gsub(".","-")
       result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
       puts "\nPhone Results#{result}"
@@ -61,6 +79,9 @@ elsif command == "-ln"
   if find_user_boolean == 0
     puts "\nUnable to find the search string \"#{lastname}\" in the database.\nPlease check your spelling and try again.\n\n"
   end
+  puts "results total: #{find_user_boolean}\n\n"
+
+# end
 
 elsif command == "-town"
   part_of_town = ARGV[1]

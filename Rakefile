@@ -3,6 +3,8 @@
 
 require 'rake/testtask'
 require './bootstrap_ar'
+require 'active_record'
+require 'yaml'
 
 Rake::TestTask.new do |t|
  t.libs << 'test'
@@ -11,8 +13,7 @@ end
 desc "Run tests"
 task :default => :test
 
-require 'active_record'
-require 'yaml'
+
 
 db_namespace = namespace :db do
   desc "Migrate the db"

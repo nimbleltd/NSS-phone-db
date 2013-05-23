@@ -16,11 +16,12 @@ require 'csv'
         @file.each do |line|
           clean_phone = line[:phone].gsub(".","-")
           User.create(firstname: line[:first_name],
-          			  lastname: line[:last_name],
-          			  phone: clean_phone,
-          			  email: line[:email],
-          			  github: line[:github],
-          			  part_of_town: line[:part_of_town])
+                  lastname: line[:last_name],
+                  phone: clean_phone,
+                  email: line[:email],
+                  github: line[:github],
+                  part_of_town: line[:part_of_town])
 
         end
+      puts "\nNew data loaded into DB successfully.\n\n"
     end
