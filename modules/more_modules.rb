@@ -47,7 +47,6 @@ def search_results(flag, search_string)
           how_many_users_did_i_find += 1
       end
     end
-    # binding.pry
     if how_many_users_did_i_find == 0
       puts "\nUnable to find the search string \"#{field_from_user}\" in the database.\nPlease check your spelling and try again.\n\n"
     end
