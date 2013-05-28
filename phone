@@ -77,6 +77,8 @@ elsif command == "-remove"
       clean_phone = user.phone.gsub(".","-")
       result = "\n==================\e[47m\nName:   #{user.firstname} #{user.lastname}\e[0m\nEmail:  #{user.email}\n\e[47mPhone:  #{clean_phone}\e[0m\nGithub: #{user.github}\n\e[47mTown:   #{user.part_of_town}\e[0m\n\n"
       puts "\nAre you sure you want to delete user:\n\nDoes the following look correct?\n\nUser to be Deleted#{result}\n\n"
+            binding.pry
+
       confirm = ask "(y)es or (n)o: "
       if confirm == 'y'
         user.delete
