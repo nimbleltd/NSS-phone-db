@@ -1,71 +1,49 @@
-NSS-futureperfect-CLI
+phone
 =====================
 
 Purpose
 -------
 
-This is my example project for the Unit 2 (Ruby) Capstone project for Nashville Software School Software Development Fundamentals course.
-
-The contstraints of the project are that they must use standard library Ruby with the exception of being able to use ActiveRecord as an ORM.  Future exceptions may be added, but the concept with this capstone is to demonstrate mastery of Ruby itself.
-
-The goal of this project is to create a rotating task-list, similar to the [iOS app 30/30](https://itunes.apple.com/us/app/30-30/id505863977?mt=8)
-
-Project Status / TODO
----------------------
-
-  1. The tests should use a test database
-  2. `Project.destroy_all` is not the ideal solution for test prep
-  3. Implement data validations
+Allow users to load data into the phone data base and find users contact info quickly 
+by searching for firstname, lastname or town.
 
 Features
 --------
-The main features of the futureperfect CLI will be that the tasks rotate until completed
+The main features of `phone` is to store and display the contact information of users 
+based on the search results of firstname, lastname and town.
 
 Usage Instructions
 ------------------
 Planned usage is as follows:
 
-To add a new task:
+load csv file:
 
-    > fp add "My new task"
+    > phone -i <staff_info.csv>
 
-To view the list of all existing tasks:
+Search for user by firstname, lastname and town:
 
-    > fp list
+    > phone -fn <firstname search string>
+    > phone -ln <lastname search string>
+    > phone -town <town search string>
+    
+Add/Remove user:
 
-To remove a new task:
+    > phone -add       follow prompts
+    > phone -remove <case sensetive firstname>
 
-    > fp remove "My new task"
-
-To start working through your tasks:
-
-    > fp start
-
-When the task is complete, the terminal bell will ding and you will be prompted to move on to the next task ('n'), finish and move on ('f') or quit ('q')
-
-While working through tasks, press:
-
-	*  'f' to complete this task (stop working on it and mark it as finished)
-	*  'n' to start the next task (if there is no task in progress)
-	*  'p' to pause/unpause the current task
-	*  'q' to quit working (exit the program)
-  *  's' to skip this task (move it to the bottom of the queue)
 
 Demo
 ----
-
-To demo the app, you'll have to download it and try it yourself.
+Download and try for yourself.
 
 Known Bugs
 ----------
-The great joy of having no code is having no bugs, no?
-
-j/k.  Requirements bugs are *everywhere*.
+Needs to have validation added.
 
 Author
 ------
 
-Eliza Brock
+Paul Campbell
 
 Changelog
 ---------
@@ -74,7 +52,7 @@ Changelog
 
 License
 -------
-Copyright (c) 2013 Eliza Brock
+Copyright (c) 2013 Paul Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
