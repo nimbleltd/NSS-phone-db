@@ -31,5 +31,12 @@ I can add or remove users individually or reload an all new csv.
 
 - Run `phone -remove <case sensetive firstname>`
 - Run `phone -add <follow promts and enter data>`
-- Run `phone -i <staff_info_.csv>` 
+- Run `phone -i <staff_info_.csv>     destroys all data then imports data from new csv`
+- Run `phone -delete_all_records        deletes all entries into the db.`
+ 
+I am an administrative user and would like to print every staff members contact info.
+
+- Run `phone -list       will list all data`
+
+
 
