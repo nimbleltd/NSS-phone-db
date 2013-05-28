@@ -48,7 +48,7 @@ Paul Campbell
 Changelog
 ---------
 
-5/9/2013 - Created initial repository with README and user stories, as per students' assignment for 5/10
+5/9/2013 - Created initial repository with README and user stories, as per students' assignment for 5/28
 
 License
 -------
