@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 
 def display_help_menu
+puts <<EOF
+      _
+ ___ | |_  ___ ._ _  ___
+| . \| . |/ . \| ' / ._>
+|  _/|_|_|\___/|_|_|\___.
+|_|
+EOF
 	puts "\nPhone Help Menu"
 	puts "==============="
 	puts "-h, -help                  Returns this menu."
